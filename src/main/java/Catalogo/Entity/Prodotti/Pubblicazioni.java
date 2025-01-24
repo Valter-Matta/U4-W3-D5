@@ -1,23 +1,31 @@
-package Catalogo.Entity;
+package Catalogo.Entity.Prodotti;
 
+import jakarta.persistence.*;
 
+@Entity // Aggiungi questa annotazione
+@Inheritance (strategy = InheritanceType.JOINED)
 public abstract class Pubblicazioni {
-	private Long ISBN;
+	@Id
+	private String ISBN;
 	private String titolo;
 	private int annoDiPubblicazione;
 	private int numeroPagine;
 
-	protected Pubblicazioni (String titolo, int annoDiPubblicazione, int numeroPagine) {
+	public Pubblicazioni () {
+	}
+
+	public Pubblicazioni (String ISBN, String titolo, int annoDiPubblicazione, int numeroPagine) {
+		this.ISBN = ISBN;
 		this.titolo = titolo;
 		this.annoDiPubblicazione = annoDiPubblicazione;
 		this.numeroPagine = numeroPagine;
 	}
 
-	public Long getISBN () {
+	public String getISBN () {
 		return ISBN;
 	}
 
-	public void setISBN (Long ISBN) {
+	public void setISBN (String ISBN) {
 		this.ISBN = ISBN;
 	}
 
